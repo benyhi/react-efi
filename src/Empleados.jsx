@@ -3,6 +3,7 @@ import ModelTable from "./components/ModelTable";
 
 function Empleados(){
     const [empleados, setEmpleados] = useState([]);
+    const orderedCols = ["id","nombre","cargo","dni","sucursal"];
 
     useEffect(()=>{
         fetch('http://localhost:5000/empleados')
@@ -18,7 +19,7 @@ function Empleados(){
 
 return (
     <div>
-        <ModelTable data={empleados}/>
+        <ModelTable data={empleados} orderedCols={orderedCols}/>
     </div>
 );
 }

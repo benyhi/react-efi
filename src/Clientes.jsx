@@ -3,6 +3,7 @@ import ModelTable from "./components/ModelTable";
 
 function Clientes(){
     const [clientes, setClientes] = useState([]);
+    const orderedCols = ["id","nombre","dni","telefono","email","direccion"];
 
     useEffect(()=>{
         fetch('http://localhost:5000/clientes')
@@ -16,9 +17,10 @@ function Clientes(){
         .catch(error => console.error('Error:', error));
     },[])
 
+    console.log(clientes)
 return (
     <div>
-        <ModelTable data={clientes}/>
+        <ModelTable data={clientes} orderedCols={orderedCols}/>
     </div>
 );
 }

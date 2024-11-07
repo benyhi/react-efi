@@ -3,6 +3,7 @@ import ModelTable from "./components/ModelTable";
 
 function Productos(){
     const [productos, setProductos] = useState([]);
+    const orderedCols = ["id","nombre","categoria","modelo","precio","cantidad","proveedor"];
 
     useEffect(()=>{
         fetch('http://localhost:5000/productos')
@@ -18,7 +19,7 @@ function Productos(){
 
 return (
     <div>
-        <ModelTable data={productos}/>
+        <ModelTable data={productos} orderedCols={orderedCols}/>
     </div>
 );
 }
