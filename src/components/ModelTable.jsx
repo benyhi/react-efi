@@ -1,19 +1,22 @@
-import './ModelTable.css'
-import { Form, Table } from 'react-bootstrap'
+import { Fragment } from 'react'
+import { Table } from 'react-bootstrap'
+import CreateForm from './CreateForm';
 
-function ModelTable({data, orderedCols}){
+function ModelTable({data, orderedCols, campos, onSubmit}){
     // Obtiene las claves del JSON y los guarda en un array como las columnas de la tabla.
     // const columns = data.length > 0 ? Object.keys(data[0]) : [];
     const columns = data.length > 0 
         ? orderedCols.filter(col => col in data[0]) // Solo toma las columnas que existen en los datos
         : [];
     return(
+        <Fragment>
         <Table responsive='lg' striped hover>
             <thead>
                 <tr>
                     {columns.map((col) =>(
                         <th key={col}>{col}</th>
                     ))}
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody> {/* Itera sobre los datos */}
@@ -29,10 +32,16 @@ function ModelTable({data, orderedCols}){
                                 }
                             </td>
                         ))}
+                        <button>Editar</button>
+                        <button>Eliminar</button>
                     </tr>
                 ))}
             </tbody>
         </Table>
+
+            <CreateForm campos={campos} onSubmit={onSubmit} />
+
+        </Fragment>
     );
 }
 

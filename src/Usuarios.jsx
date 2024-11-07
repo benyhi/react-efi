@@ -5,6 +5,20 @@ function Usuarios(){
     const [usuarios, setUsuarios] = useState([]);
     const orderedCols = ["id","nombre_usuario","contrasena_hash", "is_admin"];
     const token = localStorage.getItem("token");
+    const campos = [
+        { name: 'nombre_usuario', label: 'Nombre de Usuario', type: 'text' },
+        { name: 'contrasena', label: 'Contraseña', type: 'text' },
+        { 
+            name: 'is_admin',
+            label: 'Administrador',
+            type: 'select',
+            options:[
+                { value: "True", label: "Activado"},
+                { value: "False", label: "Desactivado"}
+            ] 
+        }
+    ];
+
 
     useEffect(() => {
         const fetchUsuarios = async () => {
@@ -38,9 +52,7 @@ function Usuarios(){
     }, [token]);
 
 return (
-    <div>
-        <ModelTable data={usuarios} orderedCols={orderedCols}/>
-    </div>
+    <ModelTable data={usuarios} orderedCols={orderedCols} campos={campos}/>
 );
 }
 

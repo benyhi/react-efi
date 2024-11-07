@@ -4,6 +4,14 @@ import ModelTable from "./components/ModelTable";
 function Proveedores(){
     const [proveedores, setProveedores] = useState([]);
     const orderedCols = ["id","nombre","cuit","telefono","email","direccion"];
+    const campos = [
+        { name: 'nombre', label: 'Nombre', type: 'text' },
+        { name: 'cuit', label: 'Cuit', type: 'number' },
+        { name: 'telefono', label: 'Telefono', type: 'number' },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'direccion', label: 'Direccion', type: 'text' }
+    ];
+
 
     useEffect(()=>{
         fetch('http://localhost:5000/proveedores')
@@ -18,9 +26,7 @@ function Proveedores(){
     },[])
     
 return (
-    <div>
-        <ModelTable data={proveedores} orderedCols={orderedCols}/>
-    </div>
+    <ModelTable data={proveedores} orderedCols={orderedCols} campos={campos}/>
 );
 }
 

@@ -4,6 +4,13 @@ import ModelTable from "./components/ModelTable";
 function Empleados(){
     const [empleados, setEmpleados] = useState([]);
     const orderedCols = ["id","nombre","cargo","dni","sucursal"];
+    const campos = [
+        { name: 'nombre', label: 'Nombre', type: 'text' },
+        { name: 'cargo', label: 'Cargo', type: 'text' },
+        { name: 'dni', label: 'DNI', type: 'number' },
+        { name: 'sucursal', label: 'Sucursal', type: 'text' }
+    ];
+
 
     useEffect(()=>{
         fetch('http://localhost:5000/empleados')
@@ -18,9 +25,7 @@ function Empleados(){
     },[])
 
 return (
-    <div>
-        <ModelTable data={empleados} orderedCols={orderedCols}/>
-    </div>
+    <ModelTable data={empleados} orderedCols={orderedCols} campos={campos}/>
 );
 }
 
